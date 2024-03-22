@@ -10,6 +10,7 @@
 
 # production
 /build
+#REACT_APP_GOOGLE_MAPS_API_KEY=AIzaSyAykiO-H17ng8gybiRj2D4SXQeh9evK5aE
 
 # misc
 .DS_Store
