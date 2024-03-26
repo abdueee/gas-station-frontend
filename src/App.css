@@ -69,23 +69,18 @@
   margin-bottom: 0;
 }
 
-/* Styles for the MapInterface component */
-.map {
-  flex-grow: 1; /* Ensures the map takes up the remaining width */
+.map-enclosure {
+  flex-grow: 1; /* Take up remaining space */
   background-color: #fff; /* White background */
-  border-radius: 15px; /* Rounded corners like the sidebar */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: Adds some shadow for depth */
-  overflow: hidden; /* Hides the overflow */
-  box-sizing: border-box; /* Include padding and border in the box's dimensions */
+  border-radius: 15px; /* Rounded corners */
+  overflow: hidden; /* Hide overflow */
+  margin: 20px; /* Margin around the map */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Shadow for depth, similar to sidebar-inner */
 }
 
-
-
-.map-inner {
-  background-color: #fff;
-  border-radius: 15px; /* This creates the smooth curves */
-  overflow-y: auto; /* Makes inner content scrollable if needed */
-  padding: 15px; /* Padding inside the inner container */
-  height: calc(100% - 30px); /* Subtracting the total vertical padding from the height */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: Adds some shadow for depth */
+.map-container {
+  height: 100%; /* Adjust the height as needed */
+  width: 100%; /* Adjust the width as needed */
+  border-radius: 20px; /* This will give you rounded corners */
+  overflow: hidden; /* Ensures the map doesn't overflow the rounded corners */
 }

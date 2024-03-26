@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from './Header';
-import MapInterface from './MapInterface';
 import Sidebar from './Sidebar';
 import './App.css';
+import GasMap from './MapWithGasStations';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Header />
       <div className="content">
         <Sidebar />
-        <MapInterface />
+        <GasMap />
       </div>
     </div>
   );
