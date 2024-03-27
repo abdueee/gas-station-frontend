@@ -33,7 +33,12 @@ const MapWithGasStations = () => {
         setMarkers((prevMarkers) => [...prevMarkers, userLocation]);
       }, (error) => {
         console.error("Error obtaining location", error);
-        // Handle errors or set a default location if desired
+          // Fall back to default Toronto coordinates
+          const torontoCoords = {
+            lat: 43.651070,
+            lng: -79.347015,
+          };
+          setCenter(torontoCoords);
       });
     }
   }, []); // This effect runs once on component mount
