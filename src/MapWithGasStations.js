@@ -5,7 +5,7 @@ import './App.css'; // Ensure your CSS file is imported
 // Define this outside of your component
 const libraries = ['places'];
 
-const center = {
+const initialCenter = {
   lat: 43.651070,
   lng: -79.347015,
 };
@@ -15,9 +15,28 @@ const MapWithGasStations = () => {
     googleMapsApiKey: 'AIzaSyAykiO-H17ng8gybiRj2D4SXQeh9evK5aE', // Replace with your actual API key
     libraries,
   });
-
+  
+  const [center, setCenter] = useState(initialCenter);
   const [markers, setMarkers] = useState([]);
   const mapRef = useRef(null);
+
+  useEffect(() => {
+    // Get the user's location
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const userLocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        setCenter(userLocation); // Update the map center
+        // Optionally, you could also set a marker at the user's location
+        setMarkers((prevMarkers) => [...prevMarkers, userLocation]);
+      }, (error) => {
+        console.error("Error obtaining location", error);
+        // Handle errors or set a default location if desired
+      });
+    }
+  }, []); // This effect runs once on component mount
 
   useEffect(() => {
     if (isLoaded && mapRef.current) {
