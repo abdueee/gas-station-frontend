@@ -11,7 +11,7 @@ const initialCenter = {
 
 const MapWithGasStations = () => {
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: 'AIzaSyAykiO-H17ng8gybiRj2D4SXQeh9evK5aE', // Replace with your actual API key
+    googleMapsApiKey: '', // Replace with your actual API key
     libraries,
   });
 
