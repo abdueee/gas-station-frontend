@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import './App.css'; // Ensure your CSS file is imported
+const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
 
 const libraries = ['places'];
 
@@ -11,7 +13,7 @@ const initialCenter = {
 
 const MapWithGasStations = () => {
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: 'AIzaSyAykiO-H17ng8gybiRj2D4SXQeh9evK5aE', // Replace with your actual API key
+    googleMapsApiKey: apiKey, // Replace with your actual API key
     libraries,
   });
 
