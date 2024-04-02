@@ -6,7 +6,7 @@ import GasMap from './MapWithGasStations';
 
 function App() {
 
-  //Testing Andre commiting to repo
+  //Testing my branch - Andre
   return (
     <div className="App">
       <Header />
