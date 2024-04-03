@@ -1,5 +1,11 @@
-/* App.css */
 
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+body {
+    font-family: 'Comfortaa', sans-serif;
+    background-color: #303030;
+    color: #fff;
+}
 .App {
   display: flex;
   flex-direction: column; /* Stack children vertically */
@@ -20,8 +26,10 @@
   align-items: center;
   justify-content: center; /* Center the contents horizontally */
   padding: 10px;
-  background-color: #f5f5f5; /* Example color, adjust as needed */
-  border-bottom: 1px solid #ddd; /* Adds a line to separate the header */
+  background-color: #0c0c0c; /* Example color, adjust as needed */
+  box-shadow: 0 3px 5px #383838;
+  border-radius: 0 0 30% 30% ;
+  /* border-bottom: 1px solid #ddd;  */
 }
 
 .header-content {
@@ -32,6 +40,7 @@
 
 /* This is where we set the layout for the sidebar and map to be side by side */
 .content {
+  
   display: flex;
   flex: 1; /* Takes up the remaining space after the header */
   overflow: hidden; /* Prevents internal scroll bars unless necessary */
@@ -40,28 +49,60 @@
 /* Styles for the Sidebar component */
 .sidebar {
   width: 450px; /* You can adjust the width as needed */
-  background-color: #f0f0f0; /* Light grey background */
+  background-color: #303030; /* Light grey background */
   overflow-y: auto; /* Allows the sidebar to scroll independently of the map */
   padding: 20px; /* Spacing inside the sidebar */
-  border-right: 1px solid #ddd; /* Adds a line to separate the sidebar from the map */
+
   flex-direction: column; /* Stack the boxes vertically */
 }
 
 .sidebar-inner {
-  background-color: #fff;
+
+ background-color: black; 
   border-radius: 15px; /* This creates the smooth curves */
   overflow-y: auto; /* Makes inner content scrollable if needed */
   padding: 15px; /* Padding inside the inner container */
   height: calc(100% - 30px); /* Subtracting the total vertical padding from the height */
   box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: Adds some shadow for depth */
+
+  /* scrollbar-width: 8px;
+  scrollbar-color: #fff;
+  scrollbar-track-color: #005B41; */
+  &::-webkit-scrollbar {
+ 
+    width: 8px;
+    background-color: black;
+   
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: #005B41;
+    border-radius: 8px;
+  }
 }
 
 .box {
-  border: 1px solid #ccc; /* Border for each box */
+ /* Border for each box */
   border-radius: 15px;
   margin-bottom: 20px; /* Adds space between the boxes */
   padding: 70px; /* Padding inside the box */
-  background-color: #f8f3f3; /* White background for the box */
+  background-color: #252525; /* White background for the box */
+  border: 2px solid #008170;
+  box-shadow: 0 2px 5px #008170, 0 2px 5px #008170 inset;
+  &:after {
+    border-radius: 30px;
+    overflow: hidden;
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    background: #008170;
+    box-shadow: 0 5px 5px #008170;
+    transition: all 0.4s ease;
+  }
 }
 
 /* This ensures there's no bottom margin on the last box for a cleaner look */
