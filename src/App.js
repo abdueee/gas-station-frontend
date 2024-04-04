@@ -1,18 +1,15 @@
 import React from 'react';
 import Header from './Header';
-import Sidebar from './Sidebar';
 import './App.css';
-import GasMap from './MapWithGasStations';
+import ParentComponent from './ParentComponent';
 
 function App() {
 
-  //Testing my branch - Andre
   return (
     <div className="App">
       <Header />
-      <div className="content">
-        <Sidebar />
-        <GasMap />
+      <div className='content'>
+        <ParentComponent />
       </div>
     </div>
   );

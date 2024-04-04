@@ -1,19 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
-import './App.css'; // Ensure your CSS file is imported
+import PropTypes from 'prop-types';
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-
 const libraries = ['places'];
+const initialCenter = { lat: 43.651070, lng: -79.347015 };
 
-const initialCenter = {
-  lat: 43.651070,
-  lng: -79.347015,
-};
-
-const MapWithGasStations = () => {
+const MapWithGasStations = ({ onUserLocationChange }) => { // Accept the callback prop
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: apiKey, // Replace with your actual API key
+    googleMapsApiKey: apiKey,
     libraries,
   });
 
@@ -23,31 +18,28 @@ const MapWithGasStations = () => {
 
   useEffect(() => {
     async function initializeMap() {
-      // First, ensure the Google Maps script is fully loaded
       if (!isLoaded) return;
-  
-      // Attempt to fetch the user's current location
+
       const userLocation = await new Promise((resolve, reject) => {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(position => {
-            resolve({
+            const location = {
               lat: position.coords.latitude,
               lng: position.coords.longitude,
-            });
+            };
+            resolve(location);
+            //console.log("onUserLocationChange prop is:", typeof onUserLocationChange);
+            onUserLocationChange(location); // Call the callback with the location
           }, () => {
-            // If there's an error (e.g., user denies location access), resolve to initialCenter
-            resolve(initialCenter);
+            resolve(initialCenter); // Use initialCenter as a fallback
           });
         } else {
-          // If Geolocation API isn't supported, resolve to initialCenter
-          resolve(initialCenter);
+          resolve(initialCenter); // Use initialCenter if Geolocation API isn't supported
         }
       });
-  
-      // Update center state to user's location or fallback to initialCenter
+
       setCenter(userLocation);
-  
-      // Ensure mapRef.current is set and valid before attempting to use PlacesService
+
       if (mapRef.current) {
         const service = new window.google.maps.places.PlacesService(mapRef.current);
         service.nearbySearch({
@@ -56,7 +48,6 @@ const MapWithGasStations = () => {
           type: 'gas_station',
         }, (results, status) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
-            // Update markers state with the results
             setMarkers(results.map(place => ({
               lat: place.geometry.location.lat(),
               lng: place.geometry.location.lng(),
@@ -69,7 +60,7 @@ const MapWithGasStations = () => {
     }
   
     initializeMap();
-  }, [isLoaded]);
+  }, [isLoaded, onUserLocationChange]); // Include onUserLocationChange in the dependency array
 
   if (!isLoaded) return "Loading Maps";
 
@@ -87,6 +78,10 @@ const MapWithGasStations = () => {
       </GoogleMap>
     </div>
   );
+};
+
+MapWithGasStations.propTypes = {
+  onUserLocationChange: PropTypes.func.isRequired,
 };
 
 export default MapWithGasStations;
