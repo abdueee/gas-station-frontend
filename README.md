@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Gas Station Finder is a React application that utilizes the Google Maps API, including Geolocation and Places services, to help users find nearby gas stations based on their current location. It aims to provide an intuitive and responsive map-based interface for an enhanced user experience.
+Gas Station Finder is a React application that utilizes the Google Maps API, including Geolocation and Places services, to help users find nearby gas stations based on their current location. It aims to provide an intuitive and responsive map-based interface for an enhanced user experience. Feel free to check out the beta version here: https://gas-station-frontend.vercel.app/
 
 ## Features
 
